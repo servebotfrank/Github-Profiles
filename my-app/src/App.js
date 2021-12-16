@@ -1,20 +1,57 @@
 import './App.css';
+import {Component} from 'react';
+import { render } from 'react-dom';
 
-function App() {
-  const title = "Welcome to the blog";
-  const likes = 50;
-  const person = {name : 'yoshi', age: 30};
-  const link = "http://www.reddit.com";
-  return (
-    <div className="App">
-      <div className="content">
-        <h1>{ title }</h1>
-        <p>Liked { likes }</p>
-        <h1>{person.age}</h1>
-        <a href ={link}> Reddit</a>
+class App extends Component {
+
+  constructor(props)
+  {
+    super(props);
+    this.state = 
+    {
+      items: [],
+      isLoaded: false,
+    }
+  }
+
+  componentDidMount()
+  {
+    fetch('https://api.github.com/users/servebotfrank')
+        .then(response => response.json())
+        .then(json => {
+          this.setState({
+            isLoaded: true,
+            items: json,
+          })
+        })
+  }
+
+  
+  render()
+  {
+    var {isLoaded, items} = this.state;
+
+    // if(!isLoaded)
+    // {
+    //   return <div>Loading...</div>
+    // }
+    // else{
+    //   return <div>{items.}</div>
+    // }
+    return (
+      <div className="App">
+        {/* <ul>
+          {items.map(item => (
+            <li key ={item.id}>
+              {item.login}
+            </li>
+          ))};
+        </ul> */}
+        <h1>{items.login}</h1>
+        <img src={items.avatar_url} alt="new" />
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
