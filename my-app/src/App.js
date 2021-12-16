@@ -11,7 +11,12 @@ class App extends Component {
     {
       items: [],
       isLoaded: false,
+      search: "",
     }
+  }
+
+  searchedUsername = event => {
+    this.setState({username: event.target.value});
   }
 
   componentDidMount()
@@ -49,6 +54,15 @@ class App extends Component {
         </ul> */}
         <h1>{items.login}</h1>
         <img src={items.avatar_url} alt="new" />
+        <form>
+          <label htmlFor="username">username</label>
+          <input
+          type = "text"
+          name ="username"
+          value = {this.state.username}
+          onChange = {this.searchedUsername}
+          />
+        </form>
       </div>
     );
   }
