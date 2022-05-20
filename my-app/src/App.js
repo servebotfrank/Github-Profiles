@@ -11,17 +11,14 @@ class App extends Component {
     {
       items: [],
       isLoaded: false,
-      search: "",
+      username: ''
     }
   }
 
   searchedUsername = event => {
-    this.setState({username: event.target.value});
-  }
-
-  componentDidMount()
-  {
-    fetch('https://api.github.com/users/servebotfrank')
+    event.preventDefault()
+    this.setState({username: event.target.value})
+    fetch('https://api.github.com/users/'+this.state.username,)
         .then(response => response.json())
         .then(json => {
           this.setState({
@@ -31,38 +28,52 @@ class App extends Component {
         })
   }
 
+  handleSubmit = event => {
+    event.preventDefault()
+    this.setState({username: event.target.value})
+    fetch('https://api.github.com/users/' + this.state.username)
+      .then(response => response.json())
+      .then(json => {
+        this.setState({
+          isLoaded: true,
+          items: json,
+        })
+      })
+  }
+
+  // componentDidMount()
+  // {
+  //   fetch('https://api.github.com/users/servebotfrank')
+  //       .then(response => response.json())
+  //       .then(json => {
+  //         this.setState({
+  //           isLoaded: true,
+  //           items: json,
+  //         })
+  //       })
+  // }
+
   
   render()
   {
-    var {isLoaded, items} = this.state;
+    var {items} = this.state;
 
-    // if(!isLoaded)
-    // {
-    //   return <div>Loading...</div>
-    // }
-    // else{
-    //   return <div>{items.}</div>
-    // }
     return (
       <div className="App">
-        {/* <ul>
-          {items.map(item => (
-            <li key ={item.id}>
-              {item.login}
-            </li>
-          ))};
-        </ul> */}
         <h1>{items.login}</h1>
-        <img src={items.avatar_url} alt="new" />
-        <form>
-          <label htmlFor="username">username</label>
-          <input
-          type = "text"
-          name ="username"
-          value = {this.state.username}
-          onChange = {this.searchedUsername}
-          />
-        </form>
+        <img src={items.avatar_url} alt="" />
+        <label>Enter the username you want to search:
+          <form onSubmit = {this.handleSubmit}>
+            <label htmlFor="username"></label>
+            <input
+            type = "text"
+            name ="username"
+            value = {this.state.username}
+            onChange = {this.searchedUsername}
+            />
+          </form>
+        </label>
+        <p1>{this.state.username}</p1>
       </div>
     );
   }
