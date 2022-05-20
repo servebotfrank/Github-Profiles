@@ -18,14 +18,14 @@ class App extends Component {
   searchedUsername = event => {
     event.preventDefault()
     this.setState({username: event.target.value})
-    fetch('https://api.github.com/users/'+this.state.username,)
-        .then(response => response.json())
-        .then(json => {
-          this.setState({
-            isLoaded: true,
-            items: json,
-          })
-        })
+    // fetch('https://api.github.com/users/'+this.state.username,)
+    //     .then(response => response.json())
+    //     .then(json => {
+    //       this.setState({
+    //         isLoaded: true,
+    //         items: json,
+    //       })
+    //     })
   }
 
   handleSubmit = event => {
