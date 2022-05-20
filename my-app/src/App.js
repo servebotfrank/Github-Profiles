@@ -60,8 +60,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>{items.login}</h1>
-        <img src={items.avatar_url} alt="" />
         <label>Enter the username you want to search:
           <form onSubmit = {this.handleSubmit}>
             <label htmlFor="username"></label>
@@ -73,6 +71,8 @@ class App extends Component {
             />
           </form>
         </label>
+        <h1>{items.login}</h1>
+        <img src={items.avatar_url} alt="" />
         <p1>{this.state.username}</p1>
       </div>
     );
