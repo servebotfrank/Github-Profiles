@@ -346,8 +346,40 @@ th {
 
 label {
   display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
 }
 
+.label-default {
+  background-color: #777;
+}
+.label-default[href]:hover,
+.label-default[href]:focus {
+  background-color: #5e5e5e;
+}
+
+.label-primary {
+  background-color: darkgreen;
+}
+.label-success{
+  background-color: darkblue;
+}
+.label-info{
+  background-color: aquamarine;
+}
 button {
   border-radius: 0;
 }
@@ -5256,10 +5288,10 @@ fieldset:disabled .btn {
 }
 
 .pagination {
-  display: -ms-flexbox;
-  display: flex;
+  display: inline-block;
   padding-left: 0;
-  list-style: none;
+  margin: 20px 0;
+  border-radius: 4px;
 }
 
 .page-link {
@@ -11518,9 +11550,6 @@ table,
 
 .nav,
 .breadcrumb,
-.pagination {
-  font-size: 0.9625rem;
-}
 
 .dropdown-menu {
   font-size: 0.9625rem;
@@ -11931,4 +11960,15 @@ table,
 }
 .panel-danger > .panel-footer + .panel-collapse > .panel-body {
   border-bottom-color: #ebccd1;
+}
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
 }

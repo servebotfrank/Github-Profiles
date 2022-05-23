@@ -29,18 +29,7 @@ class Home extends Component {
             })
           })
       }
-    
-      // componentDidMount()
-      // {
-      //   fetch('https://api.github.com/users/servebotfrank')
-      //       .then(response => response.json())
-      //       .then(json => {
-      //         this.setState({
-      //           isLoaded: true,
-      //           items: json,
-      //         })
-      //       })
-      // }
+
     
       
       render()
@@ -48,22 +37,32 @@ class Home extends Component {
         var {items} = this.state;
     
         return (
-          <div className="Home">
-            <label>Enter the username you want to search:
+          <div className="Home text-center">
               <form onSubmit = {this.handleSubmit}>
                 <input
-                className = "form-control"
+                className = "form-control text-center"
+                placeholder= "Enter the username you want to search:"
                 type = "text"
                 name ="username"
                 value = {this.state.username}
                 onChange = {this.searchedUsername}
                 />
               </form>
-            </label>
             <div class = "panel panel-default">
                 <div className = "panel-heading"><h1>{items.login}</h1></div>
-            <img src={items.avatar_url} className="thumbnail" />
-            <p1>{items.followers}</p1>
+                <img src={items.avatar_url} className="thumbnail" style= {{width: '25%'}}/>
+                <div className = "panel-body">
+                    <div className = "col-md-8">
+                        <div className="row">
+                            <div className = "col-md-12">
+                                <span className = "label label-default">{items.followers} Followers</span>
+                                <span className = "label label-primary">{items.following} Following</span>
+                                <span className = "label label-success">{items.public_repos} Public Repos</span>
+                                <span className = "label label-info">{items.public_gists} Public Gists</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
           </div>
         );
